@@ -1,6 +1,8 @@
 package Mocking;
 
-import java.util.ArrayList;
+import Models.Request;
+import Models.Response;
+
 import java.util.List;
 
 /**
@@ -12,8 +14,7 @@ public class Service {
         return null;
     }
 
-
-    public int sendNewsletter(List<String> response) {
-        return 0;
+    public Response sendNewsletter(Request request) {
+        return null;
     }
 }

@@ -2,19 +2,20 @@ package Models;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by dineshkb on 26/12/14.
  */
 public class Request {
-    ArrayList<String> emailList;
+    List<String> emailList;
     Date requestDate;
 
-    public Request(ArrayList<String> userEmailList) {
+    public Request(List<String> userEmailList) {
         emailList = userEmailList;
     }
 
-    public ArrayList<String> getEmailList() {
+    public List<String> getEmailList() {
         return emailList;
     }
 

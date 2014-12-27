@@ -1,7 +1,7 @@
 package mocking.test;
 
-import Mocking.Request;
-import Mocking.Response;
+import Models.Request;
+import Models.Response;
 import Mocking.Service;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,36 +20,22 @@ import static org.powermock.api.easymock.PowerMock.createMock;
 @RunWith(PowerMockRunner.class)
 public class ServiceTest {
 
+    private Utility utility;
     private Service service;
     private Service serviceSpy;
 
-    private static ArrayList<String> getUserEmailDump() {
-        ArrayList<String> users = new ArrayList<String>();
-        users.add("Jython");
-        users.add("Cpython");
-        users.add("python");
-        users.add("Java");
-        users.add("Scala");
-        users.add("Python");
-        users.add("Go");
-        users.add("Django");
-        users.add("ruby");
-        users.add("rails");
-        return users;
-    }
-
     @Before
     public void setUp() {
+        utility = new Utility();
         service = new Service();
         serviceSpy = spy(service);
-        Response responseMock = generateMockedResponse();
     }
 
     @Test
     public void shouldFilterAllUsers() {
-        Response responseMock = generateMockedResponse();
+        Response responseMock = utility.generateMockedResponse();
         when(serviceSpy.filter((Request) Matchers.any(Request.class))).thenReturn(responseMock);
-        ArrayList<String> userEmailList = getUserEmailDump();
+        ArrayList<String> userEmailList = Utility.getUserEmailDump();
         Response response = serviceSpy.filter(new Request(userEmailList));
         assertNotNull("Response should not be null", response);
         List<String> subscribedUsers = response.getSubscribedUsers();
@@ -57,16 +43,6 @@ public class ServiceTest {
         assertEquals("Response should contain all users", userEmailList.size(), subscribedUsers.size() + unSubscribedUsers.size());
     }
 
-
-    private Response generateMockedResponse() {
-        Response responseMock = new Response();
-        for (String user : getUserEmailDump())
-            if (user.length() % 2 == 0)
-                responseMock.addToUnSubscribedList(user);
-            else
-                responseMock.addToSubscribedList(user);
-        return responseMock;
-    }
 }
 
 

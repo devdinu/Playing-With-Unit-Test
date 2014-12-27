@@ -11,6 +11,7 @@ public class Response {
     List<String> subscribedUsers;
     List<String> unSubscribedUsers;
     Date processedDate;
+    private int totalSuccessFullRecipients;
 
     public Response() {
         subscribedUsers = new ArrayList<>();
@@ -40,5 +41,13 @@ public class Response {
 
     public void setUnSubscribedUsers(List<String> unSubscribedUsers) {
         this.unSubscribedUsers = unSubscribedUsers;
+    }
+
+    public int totalSuccessFullRecipients() {
+        return totalSuccessFullRecipients;
+    }
+
+    public void setTotalSuccessFullRecipients(int totalSuccessFullRecipients) {
+        this.totalSuccessFullRecipients = totalSuccessFullRecipients;
     }
 }
