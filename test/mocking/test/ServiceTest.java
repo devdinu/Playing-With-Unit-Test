@@ -33,7 +33,7 @@ public class ServiceTest {
 
     @Test
     public void shouldFilterAllUsers() {
-        Response responseMock = utility.generateMockedResponse();
+        Response responseMock = utility.generateMockedResponse(Utility.getUserEmailDump());
         when(serviceSpy.filter((Request) Matchers.any(Request.class))).thenReturn(responseMock);
         ArrayList<String> userEmailList = Utility.getUserEmailDump();
         Response response = serviceSpy.filter(new Request(userEmailList));

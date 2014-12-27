@@ -10,7 +10,9 @@ import java.util.ArrayList;
 public class Utility {
     static ArrayList<String> getUserEmailDump() {
         ArrayList<String> users = new ArrayList<String>();
+        users.add("User11");
         users.add("Jython");
+        users.add("User22");
         users.add("Cpython");
         users.add("python");
         users.add("Java");
@@ -23,14 +25,13 @@ public class Utility {
         return users;
     }
 
-    Response generateMockedResponse() {
+    Response generateMockedResponse(ArrayList<String> userEmailList) {
         Response responseMock = new Response();
-        for (String user : getUserEmailDump())
+        for (String user : userEmailList)
             if (user.length() % 2 != 0)
                 responseMock.addToUnSubscribedList(user);
             else
                 responseMock.addToSubscribedList(user);
-        responseMock.setTotalSuccessFullRecipients(responseMock.getSubscribedUsers().size());
         return responseMock;
     }
 }
