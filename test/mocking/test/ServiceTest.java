@@ -1,5 +1,8 @@
-package Mocking;
+package mocking.test;
 
+import Mocking.Request;
+import Mocking.Response;
+import Mocking.Service;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,7 +18,7 @@ import static org.mockito.Mockito.when;
 import static org.powermock.api.easymock.PowerMock.createMock;
 
 @RunWith(PowerMockRunner.class)
-public class MockingResponse {
+public class ServiceTest {
 
     private Service service;
     private Service serviceSpy;
@@ -49,22 +52,11 @@ public class MockingResponse {
         ArrayList<String> userEmailList = getUserEmailDump();
         Response response = serviceSpy.filter(new Request(userEmailList));
         assertNotNull("Response should not be null", response);
-
         List<String> subscribedUsers = response.getSubscribedUsers();
         List<String> unSubscribedUsers = response.getUnSubscribedUsers();
         assertEquals("Response should contain all users", userEmailList.size(), subscribedUsers.size() + unSubscribedUsers.size());
-//        assert for the right service calls that in turn invokes the Needed Service
     }
 
-
-    @Test
-    public void shouldNotSendMoreThan5Newsletter() {
-        ArrayList<String> userEmailList = getUserEmailDump();
-        Response response = service.filter(new Request(userEmailList));
-        response = service.filter(new Request(getUserEmailDump()));
-        assertNotNull(response);
-        int totalSent = service.sendNewsletter(response.getSubscribedUsers());
-    }
 
     private Response generateMockedResponse() {
         Response responseMock = new Response();

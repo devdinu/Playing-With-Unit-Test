@@ -1,4 +1,4 @@
-package Mocking;
+package Models;
 
 import java.util.ArrayList;
 import java.util.Date;
